@@ -41,13 +41,13 @@ ModelImporter:
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
-      orientationOffsetY: -49.06
+      orientationOffsetY: -56
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
@@ -526,18 +526,18 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: Ch06_nonPBR@Idle(Clone)
+    - name: Ch06_nonPBR@Idle 1(Clone)
       parentName: 
       position: {x: 0, y: 0, z: 0}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Ch06
-      parentName: Ch06_nonPBR@Idle(Clone)
+      parentName: Ch06_nonPBR@Idle 1(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: mixamorig9:Hips
-      parentName: Ch06_nonPBR@Idle(Clone)
+      parentName: Ch06_nonPBR@Idle 1(Clone)
       position: {x: -0.0017368828, y: 0.96259815, z: -0.008134875}
       rotation: {x: 0.000000002910383, y: -1.2705494e-17, z: -0.0000000043655746, w: 1}
       scale: {x: 0.99999994, y: 1, z: 1}
@@ -873,7 +873,7 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 1
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 4edc29eaa14a4ba43abecb9da5ff51c5, type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: c264ea21238380640ac91b42af3df976, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 3
   humanoidOversampling: 1

@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public bool isJumping;
     public bool isRunning;
     public bool isGrounded;
+    public bool isAiming;
 
 
     // Start is called before the first frame update
