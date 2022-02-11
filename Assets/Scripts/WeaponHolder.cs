@@ -29,22 +29,28 @@ public struct WeaponStats
     public float fireDistance;
     public bool repeating;
     public LayerMask weaponHitLayers;
+    public int totalBullets;
 }
 
 
-public class WeaponComponent : MonoBehaviour
+public class WeaponHolder : MonoBehaviour
 {
+    public Animator playerAnimator;
     public Transform gripLocation;
     public WeaponStats weaponStats;
     protected WeaponController weaponHolder;
 
+    [SerializeField]
+    protected ParticleSystem firingEffect;
     public bool isFiring;
-    public bool isReloading;
+    //public bool isReloading;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //playerAnimator = GetComponent<Animator>();
+        //firingEffect = GetComponentInChildren<ParticleSystem>();
     }
     public void Init(WeaponController weaponHolder)
     {
@@ -58,24 +64,26 @@ public class WeaponComponent : MonoBehaviour
     }
     public virtual void StartFiringWeapon()
     {
-        isFiring = true;
-        if (weaponStats.repeating)
-        {
-            InvokeRepeating(nameof(FireWeapon), weaponStats.fireStartDelay, weaponStats.fireStartDelay);
-        }
-        else
-        {
-            FireWeapon();
-        }
+        
     }
     public virtual void StopFiringWeapon()
     {
-        CancelInvoke(nameof(FireWeapon));
     }
     protected virtual void FireWeapon()
     {
-        Debug.Log("Firing weapon: " + weaponStats.bulletsInClip);
-        weaponStats.bulletsInClip--;
+        
+    }
+
+    public virtual void StartReloading()
+    {
+        weaponHolder.playerController.isReloading = true;
+
+    }
+    public virtual void StopReloading()
+    {
+        weaponHolder.playerController.isReloading = false;
+        //if (playerAnimator.GetBool("IsReloading")) return;
+        //playerAnimator.SetBool("IsReloading", false);
         
     }
 }

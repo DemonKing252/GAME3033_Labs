@@ -21,7 +21,7 @@ public class WeaponController : MonoBehaviour
 
     private bool firingPressed;
 
-    public WeaponComponent weapon;
+    public WeaponHolder weapon;
 
     public readonly int movementXHash = Animator.StringToHash("MoveX");
     public readonly int movementYHash = Animator.StringToHash("MoveY");
@@ -46,9 +46,12 @@ public class WeaponController : MonoBehaviour
             weaponSocketLocation.transform.rotation,
             weaponSocketLocation.transform);
 
-        weapon = spawnedWeapon.GetComponent<WeaponComponent>();
+        weapon = spawnedWeapon.GetComponent<WeaponHolder>();
         gripSocketLoc = weapon.gripLocation;
         weapon.Init(this);
+
+        PlayerEvents.InvokeOnWeaponEquipped(this);
+
     }
 
     // Update is called once per frame
@@ -80,8 +83,6 @@ public class WeaponController : MonoBehaviour
 
         if (value.isPressed)
         {
-            if (weapon.weaponStats.bulletsInClip <= 0)
-                return;
 
             playerController.isFiring = true;
             weapon.StartFiringWeapon();
@@ -101,7 +102,7 @@ public class WeaponController : MonoBehaviour
 
         Debug.Log("reloading . . . " + value.isPressed);
         playerController.isReloading = true;
-        playerAnim.SetBool(isReloadingHash, true);
+        weapon.StartReloading();
 
     }
 }
