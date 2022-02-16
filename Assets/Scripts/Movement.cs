@@ -23,6 +23,9 @@ public class Movement : MonoBehaviour
     Animator playerAnim;
     public Transform followTransform;
 
+    public LayerMask groundLayer;
+    public Vector3 boxSize;
+
     // movement references
     Vector2 inputVector = Vector2.zero;
     Vector3 moveDirection = Vector3.zero;
@@ -48,10 +51,20 @@ public class Movement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            Debug.Log("We have landed.");
-            playerAnim.SetBool(isJumpingHash, false);
-            playerController.isGrounded = true;
+            //bool hasCollision = Physics.BoxCast(transform.position + new Vector3(0f, boxSize.y * 0.5f, 0f), boxSize, Vector3.down, Quaternion.identity, 0.1f, groundLayer);
+
+            //if (hasCollision)
+            {
+                Debug.Log("We have landed.");
+                playerAnim.SetBool(isJumpingHash, false);
+                playerController.isGrounded = true;
+            }
         }
+    }
+    private void OnDrawGizmos()
+    {
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireCube(transform.position + new Vector3(0f, boxSize.y * 0.5f, 0f), boxSize);
     }
 
     // Start is called before the first frame update
@@ -119,6 +132,10 @@ public class Movement : MonoBehaviour
         }
 
         // movement directino 
+
+        //bool hasCollision = Physics.BoxCast(transform.position + new Vector3(0f, boxSize.y * 0.5f, 0f), boxSize, Vector3.down, Quaternion.identity, 0.1f, groundLayer);
+
+        //Debug.Log("Collision: " + hasCollision.ToString());
     }
 
     public void OnMovement(InputValue value)

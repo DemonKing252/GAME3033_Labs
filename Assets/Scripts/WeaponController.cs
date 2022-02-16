@@ -22,6 +22,7 @@ public class WeaponController : MonoBehaviour
     private bool firingPressed;
 
     public WeaponHolder weapon;
+    public GameObject weaponGO;
 
     public readonly int movementXHash = Animator.StringToHash("MoveX");
     public readonly int movementYHash = Animator.StringToHash("MoveY");
@@ -40,13 +41,16 @@ public class WeaponController : MonoBehaviour
     void Start()
     {
 
-        GameObject spawnedWeapon = Instantiate(
+        weaponGO = Instantiate(
             weaponToSpawn,
             weaponSocketLocation.transform.position,
             weaponSocketLocation.transform.rotation,
             weaponSocketLocation.transform);
 
-        weapon = spawnedWeapon.GetComponent<WeaponHolder>();
+        weapon = weaponGO.GetComponent<WeaponHolder>();
+
+        GetComponent<CharacterAimController>().laserFrom = weaponGO.GetComponent<AK47Component>().gripLocation;
+
         gripSocketLoc = weapon.gripLocation;
         weapon.Init(this);
 
