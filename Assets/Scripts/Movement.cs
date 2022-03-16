@@ -55,7 +55,7 @@ public class Movement : MonoBehaviour
 
             //if (hasCollision)
             {
-                Debug.Log("We have landed.");
+                //Debug.Log("We have landed.");
                 playerAnim.SetBool(isJumpingHash, false);
                 playerController.isGrounded = true;
             }

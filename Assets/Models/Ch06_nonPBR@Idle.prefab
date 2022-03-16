@@ -1101,7 +1101,7 @@ GameObject:
   - component: {fileID: 315300656}
   m_Layer: 0
   m_Name: Ch06_nonPBR@Idle
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1264,6 +1264,7 @@ MonoBehaviour:
   playerAnim: {fileID: 0}
   gripSocketLoc: {fileID: 0}
   weapon: {fileID: 0}
+  weaponGO: {fileID: 0}
 --- !u!114 &673814248308015346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1280,6 +1281,8 @@ MonoBehaviour:
   torsoBone: {fileID: 4547618774925330074}
   originalRotation: {x: 0, y: 54.53, z: -10.73}
   lookFrom: {fileID: 4247688821799445577}
+  cursor: {fileID: 0}
+  laserFrom: {fileID: 0}
 --- !u!120 &315300656
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -1299,7 +1302,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 0c6ceb865a050c64683892d8aa073844, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1322,7 +1325,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  - {x: 10.38, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -1331,7 +1334,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.0060943216
         inSlope: 0
         outSlope: 0
         tangentMode: 0
