@@ -5,11 +5,10 @@ using UnityEngine;
 public class ZombieFollowState : ZombieStates
 {
     GameObject followTarget;
-    float stoppingDist = 2f;
+    float stoppingDist = 1.5f;
     public ZombieFollowState(GameObject _followTarget, ZombieComponent zombie, ZombieStateMachine stateMachine) : base(zombie, stateMachine)
     {
         followTarget = _followTarget;
-        UpdateInterval = 2f;
         // Set damageable objects here add later
     }
 

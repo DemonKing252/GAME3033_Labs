@@ -5,12 +5,11 @@ using UnityEngine;
 public class ZombieAttackState : ZombieStates
 {
     GameObject followTarget;
-    float attackRange = 2f;
+    float attackRange = 2.5f;
 
     public ZombieAttackState(GameObject _followTarget, ZombieComponent zombie, ZombieStateMachine stateMachine) : base(zombie, stateMachine)
     {
         followTarget = _followTarget;
-        UpdateInterval = 2f;
 
         // Set damageable objects here add later
 
