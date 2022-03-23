@@ -10,19 +10,25 @@ public class ZombieComponent : MonoBehaviour
     public Animator zombieAnimator;
     public ZombieStateMachine zombieStateMachine;
     public GameObject followTarget;
-
+    public LayerMask playerMask;
     // Start is called before the first frame update
     void Awake()
     {
         zombieNavMeshAgent = GetComponent<NavMeshAgent>();
         zombieAnimator = GetComponent<Animator>();
         zombieStateMachine = GetComponent<ZombieStateMachine>();
+        
+    }
+    private void Start()
+    {
+        followTarget = FindObjectOfType<PlayerController>().gameObject;
         Initialize(followTarget);
 
     }
-
     public void Initialize(GameObject _followTarget)
     {
+
+
         //followTarget = _followTarget;
         ZombieIdleState idleState = new ZombieIdleState(null, this, zombieStateMachine);
         zombieStateMachine.AddState(ZombieStateType.Idling, idleState);
@@ -37,6 +43,29 @@ public class ZombieComponent : MonoBehaviour
         zombieStateMachine.AddState(ZombieStateType.Dying, deadState);
 
         zombieStateMachine.ChangeState(ZombieStateType.Following);
+    }
+    public void OnAttackNotify()
+    {
+        ///GetComponent<NavMeshAgent>().isStopped = true;
+        if (pController != null)
+        {
+            pController.Health -= 10f;
+        }
+    }
+    private PlayerController pController = null;
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            pController = other.GetComponent<PlayerController>();
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            pController = null;
+        }
     }
 
 }

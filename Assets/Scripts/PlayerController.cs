@@ -2,9 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
+    private float health = 100f;
+    public TMP_Text healthText;
+
+    public float Health
+    {
+        get { return health; }
+        set { health = value; healthText.text = "Health: " + health.ToString() + "%"; }
+    }
 
     public bool isFiring;
     public bool isReloading;

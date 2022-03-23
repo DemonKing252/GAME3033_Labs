@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class AK47Component : WeaponHolder
 {
+    Vector3 hitLocation;
     protected override void FireWeapon()
     {
         base.FireWeapon();
 
-        Vector3 hitLocation;
 
         if (weaponStats.bulletsInClip > 0 && !weaponHolder.playerController.isReloading && !weaponHolder.playerController.isRunning)
         {
@@ -24,6 +24,7 @@ public class AK47Component : WeaponHolder
             if (Physics.Raycast(screenRay, out RaycastHit hit, weaponStats.fireDistance, weaponStats.weaponHitLayers))
             {
                 hitLocation = hit.point;
+                DealDamge(hit);
                 Vector3 hitDirection = hit.point - Camera.main.transform.position;
                 Debug.DrawRay(Camera.main.transform.position, hitDirection.normalized * weaponStats.fireDistance, Color.red, 1f);
             }
@@ -35,17 +36,18 @@ public class AK47Component : WeaponHolder
             StartReloading();
         }
     }
+    void DealDamge(RaycastHit hitInfo)
+    {
+        hitInfo.transform.GetComponent<HealthComponent>().TakeDamage(weaponStats.damage);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(hitLocation, 0.1f);
+    }
 
-    
     public override void StartReloading()
     {
-
         base.StartReloading();
-
-        //if (firingEffect.isPlaying)
-        //{
-        //    firingEffect.Stop();
-        //}
 
         weaponHolder.playerAnim.SetBool("isReloading", true);
 

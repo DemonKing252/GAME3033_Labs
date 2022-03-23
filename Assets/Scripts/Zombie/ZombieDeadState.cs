@@ -21,6 +21,7 @@ public class ZombieDeadState : ZombieStates
         ownerZombie.zombieNavMeshAgent.isStopped = false;
         ownerZombie.zombieNavMeshAgent.ResetPath();
         ownerZombie.zombieAnimator.SetFloat(movementZhash, 0);
+        ownerZombie.zombieAnimator.SetBool(isDeadHash, true);
     }
 
     public override void _Update()
